@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+.columna1{
+    width: 90px;
+    height: 250px;
+}
+.columna2{
+    width: 320px;
+    height: 250px;
+    text-align: center;
+}
+
+ul > li > ul {
+    display: none;
+}
+
+ul > li:hover > ul {
+    display: block;
+    height: 15%;
+}
+
+.opcion {
+    background: yellowgreen;
+    color: black;
+    text-align: center;
+}
+li{
+    background: gainsboro;
+    color: black;
+}
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    background: red;
+  }
+  table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    background: red;
+  }
+.tablet2{
+    width: 320px;
+    height: 250px;
+    text-align: center;
+}
+  .CELULAR{
+    border: 1px solid black;
+    border-collapse: collapse;
+    background: red;
+    margin-right: 100;
+  }
+  .celular1{
+    width: 170px;
+    height: 150px;
+    text-align: center;
+  }
