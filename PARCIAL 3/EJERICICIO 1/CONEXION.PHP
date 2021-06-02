@@ -1,15 +1,18 @@
-<?PHP
+<?php
 
-$HOSTNAME='LOCALHOST';
-$DATABASE='GONZALEZMA';
-$USERNAME='ROOT';
-$PASSWORD='';
+$hostname='localhost';
+$database='gonzalezma';
+$username='root';
+$password='';
 
-TRY{
-    $CON = NEW PDO("MYSQL:HOST=$HOSTNAME;DBNAME=DATABASE",$USERNAME,$PASSWORD)
-} CATCH(PDOEXCEPTION $E){
-    ECHO "ERROR DE LA CONEXION DE LA BASE DE DATOS";
-    ECHO $E ->GETMESSAGE();
-    EXIT();
+try {
+      $con = new PDO("mysql:host=$hostname;dbname=$database",$username,$password);
+} catch(PDOException $e) {
+      echo "Error de conexion a la base de datos";
+      echo $e->getMessage();
+      exit();
 }
-$CON->SETATTRIBUTE(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+$con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+?>
