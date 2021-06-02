@@ -1,26 +1,29 @@
 <?php
-include "CONEXION.PHP";
+
+include "conexion.php";
 
 try {
-    $consultarsql = "select NOMBRE, NCONTROL, CARRERA, CONTRASEÑA from usuario";
-    $consulta = $con -> prepare($consultarsql);
+    $consultaSql = "select nombre,ncontrol,carrera,contraseña from usuario";
+    $consulta = $con -> prepare($consultaSql);
     $consulta -> execute();
-    $resultado = $consulta->fetchALL(PDO::FETCH_ASSOC);
+    $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
 
-    print "<h2><bre>fetchALL()</pre></h2>";
+    //Siguiente registro como array asaociativo
+    //--------------------------------------------------------------------
+    print"<h2><pre>PDO::FETCH_ASOC</pre></h2>";
     print "<br>";
     var_dump($resultado);
     print "<br>";
-    printf("<b>nombre   = </b> %s <br>",$resultado['nombre']);
-    printf("<b>ncontrol   = </b> %s <br>",$resultado['ncontrol']);
-    printf("<b>carrera  = </b> %s <br>",$resultado['carrera']);
-    printf("<b>contraseña   = </b> %s <br>",$resultado['contraseña']);
-    print "<br><br><br>"
+    printf("<b>nombre    = </b> %s <br>",$resultado['nombre']);
+    printf("<b>ncontrol = </b> %s <br>",$resultado['ncontrol']);
+    printf("<b>carrera = </b> %s <br>",$resultado['carrera']);
+    printf("<b>contraseña     = </b> %s <br>",$resultado['contraseña']);
+    print "<br><br><br>";
 
     $consulta->closeCursor();
 
-}catch(PDOEXCEPTION $E){
-    echo "ERROR DE CONSULTA A LA BASE DE DATOS";
-    echo $E->getMessage();
+} catch(PDOException $e) {
+    echo "Error de consulta a la base de datos";
+    echo $e->getMessage();
 }
 ?>
