@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>FIFA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body >
+    <div class="col-md-10 order-md-1">
+      <h4 class="mb-3">REGISTRO</h4>
+      <form action="REGISTRO.PHP" method="post"> 
+        <div class="row">
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="USUARIO">USUARIO :</label>
+            <input type="text" class="form-control" name="USUARIO" placeholder="EJ. ROBERTO" value="" required>
+            <div class="invalid-feedback">
+              DEBE ESCRIBIR EL NOMBRE DE USUARIO.
+            </div>
+          </div>
+          <div class="form-group col-sm-12 col-md-4 col-lg-6">
+            <label for="NOMBRE">NOMBRE COMPLETO :</label>
+            <input type="text" class="form-control" name="NOMBRE" placeholder="EJ. ROBERTO GONZALEZ" required>
+            <div class="invalid-feedback">
+              NOMBRE REQUERIDO.
+            </div>
+          </div>
+        </div>
+        <div class="row"> 
+            <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                <label for="NCONTROL">NUMERO DE CONTROL :</label>
+                <input type="text" class="form-control" name="NCONTROL" placeholder="EJ. 16100198" value="" required>
+                <div class="invalid-feedback">
+                  DEBE ESCRIBIR UN NUMERO DE CONTROL.
+                </div>
+              </div>       
+          <div class="form-group col-sm-12 col-md-4 col-lg-6">
+            <label for="CARRERA">CARRERA :</label>
+            <input type="text" class="form-control" name="CARRERA" placeholder="EJ. INGENIERIA EN SISTEMAS" required>
+            <div class="invalid-feedback">
+              DEBE ESCRIBIR UNA CARRERA.
+            </div>
+          </div>
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="CONTRASEÑA">CONTRASEÑA :</label>
+            <input type="text" class="form-control" name="CONTRASEÑA" placeholder="EJ. ROBERTO01" value="" required>
+            <div class="invalid-feedback">
+              DEBE ESCRIBIR UNA CONTRASEÑA.
+            </div>
+          </div> 
+        </div>
+        <button class="btn btn-primary" type="submit">REGISTRAR</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

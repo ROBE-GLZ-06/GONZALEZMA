@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>FIFA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  </head>
+  <body background="http://deportesinc.com/depsite/wp-content/uploads/2017/01/Estadios-m%C3%A1s-grandes.jpg">
+    <div class="col-md-10 order-md-1">
+      <h4 class="mb-3">REGISTRO FUTBOLISTA</h4>
+        <form action="BAJA.PHP" method="post"> 	
+        <div class="row">
+          <div class="form-group col-sm-12 col-md-6 col-lg-6">
+            <label for="NOMBRE">NOMBRE(S) :</label>
+            <input type="text" class="form-control" name="NOMBRE" placeholder="EJ. ROBERTO CARLOS" required>
+            <div class="invalid-feedback">
+              DEBE ESCRIBIR EL PRIMER NOMBRE.
+            </div>
+          </div>
+        </div>
+        <div class="row">        
+          <div class="form-group col-sm-12 col-md-4 col-lg-6">
+            <label for="APODO">APODO :</label>
+            <input type="text" class="form-control" name="APODO" placeholder="EJ. EL DON" required>
+            <div class="invalid-feedback">
+              APODO REQUERIDO.
+            </div>
+          </div>
+          <div class="form-group col-sm-12 col-md-4 col-lg-6">
+            <label for="NUMERO DE PLAYERA">NUMERO DE PLAYERA :</label>
+            <input type="text" class="form-control" name="NUMERO" placeholder="EJ. 06" required>
+            <div class="invalid-feedback">
+              NUMERO DE PLAYERA REQUERIDO.
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">CONSULTAR</button>
+        <input type="reset" value="cancelar">
+      </form>
+    </div>
+  </div>
+
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020-2021 FIFA</p>
+  </footer>
+</div>
+</body>
+</html>
