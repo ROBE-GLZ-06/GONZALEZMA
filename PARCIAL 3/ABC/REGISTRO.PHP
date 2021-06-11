@@ -15,7 +15,7 @@
         <!--PARA EL TITULO DEL RECUADRO DEL LOGIN -->
         <div class="row text-center login-page">
 	   <div class="col-md-12 login-form">
-	      <form action="REGISTRO.HTML" method="post"> 			
+	      <form action="LOGIN.HTML" method="post"> 			
 	         <div class="row">
 		    <div class="col-md-12 login-form-header">
 		       <p class="login-form-font-header"><span></span><p>
