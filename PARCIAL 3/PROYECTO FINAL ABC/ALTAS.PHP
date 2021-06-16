@@ -15,14 +15,19 @@
         <!--PARA EL TITULO DEL RECUADRO DEL LOGIN -->
         <div class="row text-center login-page">
 	   <div class="col-md-12 login-form">
-	      <form action="LOGIN.HTML" method="post"> 			
+	      <form action="ALTA.HTML" method="post"> 			
 	         <div class="row">
 		    <div class="col-md-12 login-form-header">
 		       <p class="login-form-font-header"><span></span><p>
              <?php
            $vNOMBRE   = $_POST['NOMBRE'];
+           $vAPELLIDOP   = $_POST['APELLIDOP'];
+           $vAPELLIDOM   = $_POST['APELLIDOM'];
+           $vEDAD   = $_POST['EDAD'];
+           $vESTATURA   = $_POST['ESTATURA'];
            $vAPODO    = $_POST['APODO'];
            $vNUMERO    = $_POST['NUMERO'];
+           $vPAIS   = $_POST['PAIS'];
 
 
 $hostname = 'localhost';
@@ -42,13 +47,19 @@ if ($link->connect_error) {
     } else {
 
    // $vPasswordMd5=md5($vPassword);
-    $consulta="SELECT NUMERO, NOMBRE, APELLIDOP, APELLIDOM, EDAD, ESTATURA, PAIS, APODO FROM jugador
-    	       where  NOMBRE = '".$vNOMBRE."' and APODO = '".$vAPODO."' and NUMERO = '".$vNUMERO."'";
+    $consulta="INSERT INTO JUGADOR (NUMERO, NOMBRE, APELLIDOP, APELLIDOM, EDAD, ESTATURA, PAIS, APODO)
+               VALUES ('$vNUMERO', '$vNOMBRE', '$vAPELLIDOP', '$vAPELLIDOM', '$vEDAD', '$vESTATURA', '$vPAIS', '$vAPODO')";
+    	      /*where NOT EXISTS (SELECT * FROM USUARIO WHERE (NUMERO = '".$vNUMERO."')";*/
 
     $result = $link->query($consulta);
 
-    if ($result->num_rows > 0) {
-            $registro = $result->fetch_assoc();
+    $consulta2="SELECT NUMERO, NOMBRE, APELLIDOP, APELLIDOM, EDAD, ESTATURA, PAIS, APODO FROM jugador
+    where  NOMBRE = '".$vNOMBRE."' and APODO = '".$vAPODO."' and NUMERO = '".$vNUMERO."'";
+
+$result2 = $link->query($consulta2);
+
+    if ($result2->num_rows > 0) {
+            $registro = $result2->fetch_assoc();
             $NUMERO = $registro['NUMERO'];
             $NOMBRE = $registro['NOMBRE'];
             $APELLIDOP = $registro['APELLIDOP'];
@@ -57,7 +68,7 @@ if ($link->connect_error) {
             $ESTATURA = $registro['ESTATURA'];
             $PAIS = $registro['PAIS'];
             $APODO = $registro['APODO'];
-            ECHO"EL JUGADOR A ELIMIAR ES  <BR>NOMBRE : $NOMBRE<BR>";
+            ECHO"EL JUGADOR AGREGADO ES <BR>NOMBRE : $NOMBRE<BR>";
             ECHO"<BR>APELLIDO PATERNO : $APELLIDOP<BR>";
             ECHO"<BR>APELLIDO MATERNO : $APELLIDOM<BR>";
             ECHO"<BR>NUMERO DE PLAYERA : $NUMERO<BR>";
@@ -65,21 +76,9 @@ if ($link->connect_error) {
             ECHO"<BR>ESTATURA : $ESTATURA CM<BR>";
             ECHO"<BR>PAIS : $PAIS<BR>";
             ECHO"<BR>APODO : $APODO<BR>";
-            $consulta2="DELETE FROM jugador
-    	       where  NOMBRE = '".$vNOMBRE."' and APODO = '".$vAPODO."' and NUMERO = '".$vNUMERO."'";
-               $result2 = $link->query($consulta2);
-               if ($result->num_rows > 0){
-                $registro = $result->fetch_assoc();
-                   
-            ECHO"<BR>SE HA ELIMINADO CON EXITO!!!!<BR>";
-
-               }else{
-                ECHO"EL JUGADOR A ELIMINAR NO EXISTE";
-
-               }
 
     } else  {
-      ECHO"EL JUGADOR A ELIMINAR NO EXISTE";
+      ECHO"EL JUGADOR QUE QUIERE AGREGAR YA EXISTE!!!";
     }
 
     $link->close();

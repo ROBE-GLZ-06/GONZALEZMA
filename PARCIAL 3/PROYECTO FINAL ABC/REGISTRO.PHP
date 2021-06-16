@@ -45,8 +45,8 @@ if ($link->connect_error) {
 
    // $vPasswordMd5=md5($vPassword);
     $consulta="INSERT INTO USUARIO (USUARIO, NOMBRE, NCONTROL, CARRERA, CONTRASEÑA)
-               SELECT ('$vUSUARIO', '$vNOMBRE', '$vNCONTROL', '$vCARRERA', '$vCONTRASEÑA')
-    	       where NOT EXISTS (SELECT * FROM usuario WHERE USUARIO = '".$vUSUARIO."' and NCONTROL = '".$vNCONTROL."')";
+               VALUES ('$vUSUARIO', '$vNOMBRE', '$vNCONTROL', '$vCARRERA', '$vCONTRASEÑA')";
+    	       /*where NOT EXISTS (SELECT * FROM usuario WHERE (USUARIO = '".$vUSUARIO."' and NCONTROL = '".$vNCONTROL."'))";*/
 
     $result = $link->query($consulta);
 

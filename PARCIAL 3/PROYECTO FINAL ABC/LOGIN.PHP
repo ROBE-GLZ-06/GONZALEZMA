@@ -20,11 +20,64 @@
 		    <div class="col-md-12 login-form-header">
 		       <p class="login-form-font-header"><span></span><p>
              <?php
-           $vLogin   = $_POST['Usuario'];
-$vPassword= $_POST['Contraseña'];
+          // $vLogin   = $_POST['Usuario'];
+           //$vPassword= $_POST['Contraseña'];
+
+           session_start();
+
+if(isset($_POST['Usuario']))
+{
+  $user = $_POST['Usuario'];
+}else
+{
+  $user = $_SESSION['usuario'];
+}
+
+if(isset($_SESSION['usuario'])){
+		 printf("REANUDANDO SESION <br>");
+         //printf("BIENVENIDO DE NUEVO".$_SESSION['usuario']);
+         
+         
+         $hostname = 'localhost';
+         $database = 'gonzalezma';
+         $username = 'root';
+         $password = '';
 
 
-$hostname = 'localhost';
+
+$link = new mysqli($hostname, $username, $password, $database);
+
+if ($link->connect_error) {
+        $row['resultado']  = '1';
+        $row['informacion']= 'Error DB';
+		$row['mensaje']    = 'Error conexion';
+		$row['detalle']    = 'No hay conexion a la base de datos';
+    } else {
+
+   // $vPasswordMd5=md5($vPassword);
+    $consulta="select NOMBRE,NCONTROL,CARRERA from USUARIO
+    	       where  USUARIO = '".$_SESSION['usuario']."'";
+
+    $result = $link->query($consulta);
+
+    if ($result->num_rows > 0) {
+            $registro = $result->fetch_assoc();
+            $NOMBRE = $registro['NOMBRE'];
+            //$_SESSION['nombre']=$NOMBRE;
+            ECHO"BIENVENIDO DE NUEVO <BR>$NOMBRE";
+            ECHO"<BR>QUE DESEA REALIZAR? <BR>";
+            ECHO"<a href='ALTA.HTML'>ALTA</a> <BR><a href='CONSULTA.HTML'>CONSULTA</a><BR><a href='BAJA.HTML'>BAJA</a>";
+    } else  {
+      ECHO"ERROR EN EL USUARIO Y/O CONTRASEÑA";
+    }
+
+    $link->close();
+}
+} else {
+         $_SESSION['usuario'] = $user;
+       	 printf("NUEVA SESION <br>");
+       	 //printf("Bienvenido %s",$user);
+          $hostname = 'localhost';
 $database = 'gonzalezma';
 $username = 'root';
 $password = '';
@@ -42,13 +95,14 @@ if ($link->connect_error) {
 
    // $vPasswordMd5=md5($vPassword);
     $consulta="select NOMBRE,NCONTROL,CARRERA from USUARIO
-    	       where  USUARIO = '".$vLogin."' and CONTRASEÑA = '".$vPassword."'";
+    	       where  USUARIO = '".$_SESSION['usuario']."'";
 
     $result = $link->query($consulta);
 
     if ($result->num_rows > 0) {
             $registro = $result->fetch_assoc();
             $NOMBRE = $registro['NOMBRE'];
+            //$_SESSION['nombre']=$NOMBRE;
             ECHO"BIENVENIDO <BR>$NOMBRE";
             ECHO"<BR>QUE DESEA REALIZAR? <BR>";
             ECHO"<a href='ALTA.HTML'>ALTA</a> <BR><a href='CONSULTA.HTML'>CONSULTA</a><BR><a href='BAJA.HTML'>BAJA</a>";
@@ -58,6 +112,10 @@ if ($link->connect_error) {
 
     $link->close();
 }
+}
+
+
+
 
 
 ?>

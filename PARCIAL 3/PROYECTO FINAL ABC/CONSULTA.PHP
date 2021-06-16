@@ -15,19 +15,14 @@
         <!--PARA EL TITULO DEL RECUADRO DEL LOGIN -->
         <div class="row text-center login-page">
 	   <div class="col-md-12 login-form">
-	      <form action="ALTA.HTML" method="post"> 			
+	      <form action="CONSULTA.HTML" method="post"> 			
 	         <div class="row">
 		    <div class="col-md-12 login-form-header">
 		       <p class="login-form-font-header"><span></span><p>
              <?php
            $vNOMBRE   = $_POST['NOMBRE'];
-           $vAPELLIDOP   = $_POST['APELLIDOP'];
-           $vAPELLIDOM   = $_POST['APELLIDOM'];
-           $vEDAD   = $_POST['EDAD'];
-           $vESTATURA   = $_POST['ESTATURA'];
            $vAPODO    = $_POST['APODO'];
            $vNUMERO    = $_POST['NUMERO'];
-           $vPAIS   = $_POST['PAIS'];
 
 
 $hostname = 'localhost';
@@ -47,19 +42,13 @@ if ($link->connect_error) {
     } else {
 
    // $vPasswordMd5=md5($vPassword);
-    $consulta="INSERT INTO JUGADOR (NUMERO, NOMBRE, APELLIDOP, APELLIDOM, EDAD, ESTATURA, PAIS, APODO)
-               SELECT ('$vNUMERO', '$vNOMBRE', '$vAPELLIDOP', '$vAPELLIDOM', '$vEDAD', '$vESTATURA', '$vPAIS', '$vAPODO')
-    	      where NOT EXISTS (SELECT * FROM USUARIO WHERE (NUMERO = '".$vNUMERO."')");
+    $consulta="SELECT NUMERO, NOMBRE, APELLIDOP, APELLIDOM, EDAD, ESTATURA, PAIS, APODO FROM jugador
+    	       where  NOMBRE = '".$vNOMBRE."' and APODO = '".$vAPODO."' and NUMERO = '".$vNUMERO."'";
 
     $result = $link->query($consulta);
 
-    $consulta2="SELECT NUMERO, NOMBRE, APELLIDOP, APELLIDOM, EDAD, ESTATURA, PAIS, APODO FROM jugador
-    where  NOMBRE = '".$vNOMBRE."' and APODO = '".$vAPODO."' and NUMERO = '".$vNUMERO."'";
-
-$result2 = $link->query($consulta2);
-
-    if ($result2->num_rows > 0) {
-            $registro = $result2->fetch_assoc();
+    if ($result->num_rows > 0) {
+            $registro = $result->fetch_assoc();
             $NUMERO = $registro['NUMERO'];
             $NOMBRE = $registro['NOMBRE'];
             $APELLIDOP = $registro['APELLIDOP'];
@@ -68,7 +57,7 @@ $result2 = $link->query($consulta2);
             $ESTATURA = $registro['ESTATURA'];
             $PAIS = $registro['PAIS'];
             $APODO = $registro['APODO'];
-            ECHO"EL JUGADOR AGREGADO ES <BR>NOMBRE : $NOMBRE<BR>";
+            ECHO"EL RESULTADO DE SU CONSULTA ES <BR>NOMBRE : $NOMBRE<BR>";
             ECHO"<BR>APELLIDO PATERNO : $APELLIDOP<BR>";
             ECHO"<BR>APELLIDO MATERNO : $APELLIDOM<BR>";
             ECHO"<BR>NUMERO DE PLAYERA : $NUMERO<BR>";
@@ -78,7 +67,7 @@ $result2 = $link->query($consulta2);
             ECHO"<BR>APODO : $APODO<BR>";
 
     } else  {
-      ECHO"EL JUGADOR QUE QUIERE AGREGAR YA EXISTE!!!";
+      ECHO"EL JUGADOR BUSCADO NO EXISTE!!!";
     }
 
     $link->close();
